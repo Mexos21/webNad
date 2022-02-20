@@ -1,0 +1,26 @@
+<div>
+  <mat-grid-list cols="3">
+    <mat-grid-tile *ngFor="let game of games">
+      <mat-card class="card">
+        <mat-card-content>
+          <img src="assets/img/lea_crosscode.png" class="img" />
+        </mat-card-content>
+        <mat-card-footer>
+          <h1 class="cardTitle">
+            {{ game.name }}
+            <div *ngIf="game.finish == 'Acabado'">
+              <mat-icon>sports_esports</mat-icon>
+            </div>
+            <div *ngIf="game.finish == 'Jugando'">
+              <mat-icon>sports_esports</mat-icon>
+            </div>
+            <div *ngIf="game.finish == 'No terminado'">
+              <mat-icon>sports_esports</mat-icon>
+            </div>
+            {{ game.platformPlayed }} - {{ game.year }}
+          </h1>
+        </mat-card-footer>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
