@@ -1,0 +1,38 @@
+<div class="login-card">
+  <mat-card class="login-card">
+    <img src="../../assets/img/logo.png" />
+
+    <br />
+
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Usuario</mat-label>
+        <input matInput formControlName="email" placeholder="Email" />
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error *ngIf="email?.hasError('required')">
+          Este campo es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="email?.hasError('email')">
+          El email introducido es inválido, por favor introduzca uno válido.
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <mat-form-field appearance="fill" color="accent">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" placeholder="Constraseña" type="password" />
+        <mat-icon matSuffix>lock</mat-icon>
+        <mat-error *ngIf="password?.hasError('required')">
+          Este campo es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <br />
+
+      <button mat-flat-button color="accent" class="whiteText" [disabled]="loginForm.invalid">
+        Iniciar sesion
+      </button>
+    </form>
+  </mat-card>
+</div>

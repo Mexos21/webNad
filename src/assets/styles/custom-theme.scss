@@ -15,7 +15,7 @@ $web-nad-primary: mat-palette($custom-white);
 $web-nad-accent:  mat-palette($custom-cyan, 700);
 
 // The warn palette is optional (defaults to red).
-$web-nad-warn:    mat-palette($mat-yellow);
+$web-nad-warn:    mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $web-nad-theme: mat-light-theme($web-nad-primary, $web-nad-accent, $web-nad-warn);

@@ -10,11 +10,27 @@ import { GamesComponent } from './games/games.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatButtonModule } from "@angular/material/button";
+import { HttpClientModule } from '@angular/common/http';
+import { MatDialogModule } from "@angular/material/dialog";
+import { LoginComponent } from './login/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from "@angular/material/input";
+import { NgxSpinnerModule } from "ngx-spinner";
+import { ReactiveFormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { AuthService } from 'src/services/auth-service.service';
+import { MatSelectModule } from "@angular/material/select";
+
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { CreateGameComponent } from './create-game/create-game.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
-  declarations: [AppComponent, GamesComponent],
+  declarations: [AppComponent, GamesComponent, LoginComponent, CreateGameComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatCardModule,
@@ -22,8 +38,18 @@ import { MatButtonModule } from "@angular/material/button";
     MatIconModule,
     MatGridListModule,
     MatButtonModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MaterialFileInputModule,
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

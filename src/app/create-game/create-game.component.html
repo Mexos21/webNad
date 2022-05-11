@@ -1,0 +1,108 @@
+<div class="createGameCard">
+  <mat-card>
+    <mat-grid-list cols="2" rowHeight="1:1.2">
+      <mat-grid-tile>
+        <div class="formDiv">
+          <form [formGroup]="createGameForm">
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Título</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                id="name"
+                placeholder="Título"
+              />
+              <mat-error *ngIf="year?.hasError('required')"
+                >Este campo es obligatorio</mat-error
+              >
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="state">
+                <mat-option value="Acabado"> Acabado </mat-option>
+                <mat-option value="No terminado"> No terminado </mat-option>
+                <mat-option value="Jugando"> Jugando </mat-option>
+              </mat-select>
+              <mat-error *ngIf="year?.hasError('required')"
+                >Este campo es obligatorio</mat-error
+              >
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Plataforma</mat-label>
+              <mat-select formControlName="platform">
+                <mat-option
+                  *ngFor="let platform of platforms"
+                  [value]="platform"
+                >
+                  {{ platform }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="year?.hasError('required')"
+                >Este campo es obligatorio</mat-error
+              >
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Año</mat-label>
+              <input
+                id="year"
+                type="number"
+                min="1995"
+                matInput
+                formControlName="year"
+                placeholder="Año"
+              />
+              <mat-error *ngIf="year?.hasError('min')"
+                >El año mínimo es 1995</mat-error
+              >
+              <mat-error *ngIf="year?.hasError('required')"
+                >Este campo es obligatorio</mat-error
+              >
+            </mat-form-field>
+
+            <br />
+
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Imagen</mat-label>
+              <ngx-mat-file-input
+                type="file"
+                name="file"
+                id="file"
+                #fileInput
+                (change)="onFileChange($event)"
+              ></ngx-mat-file-input>
+              <mat-error *ngIf="image?.hasError('required')"
+                >Este campo es obligatorio</mat-error
+              >
+            </mat-form-field>
+          </form>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="imageDiv">
+          <img [src]="imageSrc" *ngIf="imageSrc" class="imagePreview" />
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+    <div class="buttonDiv">
+      <button
+        mat-flat-button
+        color="accent"
+        class="whiteText"
+        [disabled]="createGameForm.invalid"
+      >
+        Guardar datos
+      </button>
+    </div>
+  </mat-card>
+</div>

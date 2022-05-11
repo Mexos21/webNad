@@ -1,63 +1,18 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Game } from "../models/game";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient // Creamos un cliente http para poder hacer las peticiones
+  ) { }
 
 
   getGames() {
-    // Llamada a la API
-
-    let games = [
-      {
-        id: 1,
-        name: 'Crosscode',
-        finish: 'Acabado',
-        platformPlayed: 'PC',
-        year: 2019,
-      },
-      {
-        id: 1,
-        name: 'Crosscode',
-        finish: 'Jugando',
-        platformPlayed: 'PC',
-        year: 2019,
-      },
-      {
-        id: 1,
-        name: 'Crosscode',
-        finish: 'No terminado',
-        platformPlayed: 'PC',
-        year: 2019,
-      },
-      {
-        id: 1,
-        name: 'Crosscode',
-        finish: 'Acabado',
-        platformPlayed: 'PC',
-        year: 2019,
-      },
-      {
-        id: 1,
-        name: 'Crosscode',
-        finish: 'Jugando',
-        platformPlayed: 'PC',
-        year: 2019,
-      },
-      {
-        id: 1,
-        name: 'Crosscode',
-        finish: 'No terminado',
-        platformPlayed: 'PC',
-        year: 2019,
-      },
-    ];
-  
-    return games;
+    return this.http.get('https://webnad-f37af-default-rtdb.europe-west1.firebasedatabase.app/games.json');
   }
 }
 
