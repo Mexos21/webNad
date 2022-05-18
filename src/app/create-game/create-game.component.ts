@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/services/auth-service.service';
+import { UploadGameService } from 'src/services/upload-game.service';
 
 @Component({
   selector: 'app-create-game',
@@ -9,8 +10,7 @@ import { AuthService } from 'src/services/auth-service.service';
 })
 export class CreateGameComponent implements OnInit {
   file: File;
-  imageSrc: string | ArrayBuffer =
-    '../assets/img/missing-image.jpg';
+  imageSrc: string | ArrayBuffer = '../assets/img/missing-image.jpg';
   createGameForm: FormGroup;
   platforms: string[] = [
     'PC',
@@ -27,7 +27,11 @@ export class CreateGameComponent implements OnInit {
     'SWITCH',
   ];
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private uploadGameService: UploadGameService
+  ) {}
 
   ngOnInit(): void {
     this.authService.loggedUser();
@@ -36,9 +40,9 @@ export class CreateGameComponent implements OnInit {
       name: ['', Validators.required],
       state: ['', Validators.required],
       platform: ['', Validators.required],
-      year: ['', Validators.required, Validators.min(1995)],
+      year: ['', [Validators.required, Validators.min(1995)]],
       image: ['', Validators.required],
-      fileSource: ['', Validators.required],
+      fileBase64: ['', [Validators.required]],
     });
   }
 
@@ -62,6 +66,11 @@ export class CreateGameComponent implements OnInit {
     return this.createGameForm.get('image');
   }
 
+  get fileBase64() {
+    return this.createGameForm.get('fileBase64');
+  }
+
+
   get formControls() {
     return this.createGameForm.controls;
   }
@@ -76,9 +85,13 @@ export class CreateGameComponent implements OnInit {
         this.imageSrc = reader.result as string;
 
         this.createGameForm.patchValue({
-          fileSource: reader.result,
+          fileBase64: reader.result,
         });
       };
     }
+  }
+
+  createGame() {
+    this.uploadGameService.uploadGame(this.name.value,this.state.value,this.platform.value,this.year.value,this.fileBase64.value)
   }
 }

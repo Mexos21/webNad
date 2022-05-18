@@ -1,9 +1,10 @@
 .card {
+  border-radius: 10px;
   //margin-top: 50px;
   margin: 20px;
   width: fit-content;
   //max-width: 20%;
-  height: 70%;
+  height: 85%;
 }
 
 .cardTitle {
@@ -12,4 +13,8 @@
 
 .img {
   padding: 10px;
+  height: 390px;
+  width: 270px;
 }
+
+

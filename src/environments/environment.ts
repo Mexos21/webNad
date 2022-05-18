@@ -15,6 +15,9 @@ export const environment = {
     appId: '1:296352563229:web:5dfb826636d822e41806f4',
     measurementId: 'G-PJ3REM0HF7',
   },
+  imgurUploadLink: "https://api.imgur.com/3/image",
+  imgurPublicId: "6fd6c585c4398cd",
+
 };
 
 /*

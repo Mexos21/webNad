@@ -25,6 +25,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { CreateGameComponent } from './create-game/create-game.component';
 import { MaterialFileInputModule } from 'ngx-material-file-input';
+import { FirestoreModule } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [AppComponent, GamesComponent, LoginComponent, CreateGameComponent],
@@ -45,6 +46,7 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     ReactiveFormsModule,
     MatSelectModule,
     MaterialFileInputModule,
+    FirestoreModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

@@ -4,7 +4,7 @@
     <mat-grid-tile *ngFor="let game of games">
       <mat-card class="card">
         <mat-card-content>
-          <img src="assets/img/lea_crosscode.png" class="img" />
+          <img [src]="game.image" class="img" />
         </mat-card-content>
         <mat-card-footer>
           <h1 class="cardTitle">
