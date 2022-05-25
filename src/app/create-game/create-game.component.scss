@@ -1,8 +1,15 @@
-mat-card {
+.mainCard {
     margin-top: 30px;
     margin-left: 20%;
     margin-right: 20%;
+    background-color: rgb(236, 236, 236)
 }
+
+.card {
+    border-radius: 10px;
+    margin: 20px;
+    width: fit-content;
+  }
 
 mat-grid-tile {
     margin-left: -70px;
@@ -21,8 +28,10 @@ mat-form-field {
 }
 
 .imagePreview {
-    max-height: 520px;
-    max-width: 360px;
+    padding: 10px;
+    height: 390px;
+    width: 270px;
+    object-fit: contain;
 }
 
 .buttonDiv {
@@ -32,3 +41,11 @@ mat-form-field {
 .whiteText {
     color: #FFFFFF;
 }
+
+.cardTitle {
+    text-align: center;
+  }
+  
+  .alignBottom {
+    vertical-align: bottom;
+  }

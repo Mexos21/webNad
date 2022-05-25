@@ -24,6 +24,7 @@
     "firebase": "^9.6.10",
     "firebase-tools": "^10.8.0",
     "firebaseui": "^6.0.1",
+    "imgbox-js": "^1.0.35",
     "ngx-material-file-input": "^3.0.0",
     "ngx-spinner": "^13.1.1",
     "rxjs": "~6.6.0",

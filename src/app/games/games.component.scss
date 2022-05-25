@@ -1,9 +1,7 @@
 .card {
   border-radius: 10px;
-  //margin-top: 50px;
   margin: 20px;
   width: fit-content;
-  //max-width: 20%;
   height: 85%;
 }
 
@@ -11,10 +9,15 @@
   text-align: center;
 }
 
+.alignBottom {
+  vertical-align: bottom;
+}
+
 .img {
   padding: 10px;
   height: 390px;
   width: 270px;
+  object-fit: contain;
 }
 
 

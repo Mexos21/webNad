@@ -1,4 +1,7 @@
-<ngx-spinner type="ball-clip-rotate" template="<img src='assets/img/donut-logo.gif'>"></ngx-spinner>
+<ngx-spinner
+  type="ball-clip-rotate"
+  template="<img src='assets/img/donut-logo.gif'>"
+></ngx-spinner>
 <div>
   <mat-grid-list cols="3">
     <mat-grid-tile *ngFor="let game of games">
@@ -7,21 +10,26 @@
           <img [src]="game.image" class="img" />
         </mat-card-content>
         <mat-card-footer>
-          <h1 class="cardTitle">
-            {{ game.name }}
+          <div class="alignBottom">
+            <h1 class="cardTitle"> <!-- En formato h1 se muestran el nombre, estado, plataforma y año -->
+              {{ game.name }}
 
-            <div *ngIf="game.state == 'Acabado'"> <!-- Estos divs indican el estado del juego -->
-              <mat-icon>check</mat-icon>
-            </div>
-            <div *ngIf="game.state == 'Jugando'"> <!-- Estos divs indican el estado del juego -->
-              <mat-icon>sports_esports</mat-icon>
-            </div>
-            <div *ngIf="game.state == 'No terminado'"> <!-- Estos divs indican el estado del juego -->
-              <mat-icon>close</mat-icon>
-            </div>
+              <div *ngIf="game.state == 'Acabado'">
+                <!-- Estos divs indican el estado del juego -->
+                <mat-icon>check</mat-icon>
+              </div>
+              <div *ngIf="game.state == 'Jugando'">
+                <!-- Estos divs indican el estado del juego -->
+                <mat-icon>sports_esports</mat-icon>
+              </div>
+              <div *ngIf="game.state == 'No terminado'">
+                <!-- Estos divs indican el estado del juego -->
+                <mat-icon>close</mat-icon>
+              </div>
 
-            {{ game.platform }} - {{ game.year }}
-          </h1>
+              {{ game.platform }} - {{ game.year }}
+            </h1>
+          </div>
         </mat-card-footer>
       </mat-card>
     </mat-grid-tile>

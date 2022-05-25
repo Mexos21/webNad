@@ -1,5 +1,5 @@
 <div class="createGameCard">
-  <mat-card>
+  <mat-card class="mainCard">
     <form [formGroup]="createGameForm" (ngSubmit)="createGame()">
       <mat-grid-list cols="2" rowHeight="1:1.2">
         <mat-grid-tile>
@@ -11,6 +11,7 @@
                 formControlName="name"
                 id="name"
                 placeholder="Título"
+                (change)="onFieldChange($event)"
               />
               <mat-error *ngIf="year?.hasError('required')"
                 >Este campo es obligatorio</mat-error
@@ -21,7 +22,7 @@
 
             <mat-form-field appearance="fill" color="accent">
               <mat-label>Estado</mat-label>
-              <mat-select formControlName="state">
+              <mat-select formControlName="state" (selectionChange)="onSelectChange($event)">
                 <mat-option value="Acabado"> Acabado </mat-option>
                 <mat-option value="No terminado"> No terminado </mat-option>
                 <mat-option value="Jugando"> Jugando </mat-option>
@@ -35,7 +36,7 @@
 
             <mat-form-field appearance="fill" color="accent">
               <mat-label>Plataforma</mat-label>
-              <mat-select formControlName="platform">
+              <mat-select formControlName="platform" (selectionChange)="onSelectChange($event)">
                 <mat-option
                   *ngFor="let platform of platforms"
                   [value]="platform"
@@ -59,6 +60,7 @@
                 matInput
                 formControlName="year"
                 placeholder="Año"
+                (change)="onFieldChange($event)"
               />
               <mat-error *ngIf="year?.hasError('min')"
                 >El año mínimo es 1995</mat-error
@@ -88,9 +90,34 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-          <div class="imageDiv">
-            <img [src]="imageSrc" *ngIf="imageSrc" class="imagePreview" />
-          </div>
+          <mat-card class="card">
+            <mat-card-content>
+              <img [src]="imageSrc" *ngIf="imageSrc" class="imagePreview" />
+            </mat-card-content>
+            <mat-card-footer>
+              <div class="alignBottom">
+                <h1 class="cardTitle">
+                  <!-- En formato h1 se muestran el nombre, estado, plataforma y año -->
+                  {{ previewGame.name }}
+
+                  <div *ngIf="previewGame.state == 'Acabado'">
+                    <!-- Estos divs indican el estado del juego -->
+                    <mat-icon>check</mat-icon>
+                  </div>
+                  <div *ngIf="previewGame.state == 'Jugando'">
+                    <!-- Estos divs indican el estado del juego -->
+                    <mat-icon>sports_esports</mat-icon>
+                  </div>
+                  <div *ngIf="previewGame.state == 'No terminado'">
+                    <!-- Estos divs indican el estado del juego -->
+                    <mat-icon>close</mat-icon>
+                  </div>
+
+                  {{ previewGame.platform }} - {{ previewGame.year }}
+                </h1>
+              </div>
+            </mat-card-footer>
+          </mat-card>
         </mat-grid-tile>
       </mat-grid-list>
 

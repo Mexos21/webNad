@@ -17,7 +17,7 @@ export const environment = {
   },
   imgurUploadLink: "https://api.imgur.com/3/image",
   imgurPublicId: "6fd6c585c4398cd",
-
+  imgurPrivateId: "4314f4dde7eccdbf06d0994041c287317eb8665b",
 };
 
 /*

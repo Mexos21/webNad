@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Game } from 'src/interfaces/game';
 import { AuthService } from 'src/services/auth-service.service';
 import { UploadGameService } from 'src/services/upload-game.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-game',
@@ -27,6 +29,8 @@ export class CreateGameComponent implements OnInit {
     'SWITCH',
   ];
 
+  previewGame: Game;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -34,6 +38,14 @@ export class CreateGameComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.previewGame = {
+      id: 0,
+      name: 'Título',
+      state: 'Acabado',
+      platform: 'Plataforma',
+      year: new Date().getFullYear(),
+      image: '',
+    };
     this.authService.loggedUser();
 
     this.createGameForm = this.fb.group({
@@ -70,7 +82,6 @@ export class CreateGameComponent implements OnInit {
     return this.createGameForm.get('fileBase64');
   }
 
-
   get formControls() {
     return this.createGameForm.controls;
   }
@@ -91,7 +102,58 @@ export class CreateGameComponent implements OnInit {
     }
   }
 
+  onFieldChange(event) {
+    switch (event.target.id) {
+      case 'name':
+        this.previewGame.name = event.target.value;
+
+        break;
+
+      case 'year':
+        this.previewGame.year = event.target.value;
+
+        break;
+    }
+  }
+
+  onSelectChange(event) {
+    switch (event.source.ngControl.name) {
+      case 'state':
+        this.previewGame.state = event.value;
+        break;
+
+      case 'platform':
+        this.previewGame.platform = event.value;
+        break;
+    }
+  }
+
   createGame() {
-    this.uploadGameService.uploadGame(this.name.value,this.state.value,this.platform.value,this.year.value,this.fileBase64.value)
+    this.uploadGameService
+      .uploadGame(
+        this.name.value,
+        this.state.value,
+        this.platform.value,
+        this.year.value,
+        this.fileBase64.value
+      )
+      .then(() => {
+        Swal.fire({
+          title: 'Error',
+          text: 'Juego subido correctamente',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#43BAF9',
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          title: 'Error',
+          text: err.message,
+          icon: 'warning',
+          confirmButtonText: 'Ok',
+          confirmButtonColor: '#43BAF9',
+        });
+      });
   }
 }

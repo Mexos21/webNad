@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -7,7 +6,6 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class GamesService {
   constructor(
-    private http: HttpClient, // Creamos un cliente http para poder hacer las peticiones
     private db: AngularFirestore,
   ) {}
 
